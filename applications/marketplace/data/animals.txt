@@ -1,0 +1,14 @@
+Ram,Brown Ram,180000,10,Domestic
+Ram,White Ram,200000,8,Domestic
+Cow,White Cow,750000,5,Domestic
+Cow,Black Cow,800000,4,Domestic
+Goat,Black Goat,90000,15,Domestic
+Goat,White Goat,100000,12,Domestic
+Camel,Desert Camel,1200000,3,Domestic
+Chicken,Local Chicken,12000,25,Bird
+Chicken,Broiler Chicken,10000,30,Bird
+Fish,Catfish,8500,20,Aquatic
+Fish,Tilapia,7000,18,Aquatic
+Snail,Large Snail,5000,40,Mollusc
+Crab,Fresh Crab,6500,15,Aquatic
+Crayfish,Large Crayfish,9000,20,Aquatic

@@ -1,0 +1,21 @@
+# Virtual environment
+venv/
+
+# Local authentication data
+users.txt
+passwords.txt
+locked_accounts.txt
+restricted.txt
+
+# Payment data
+payments.txt
+
+# Local application history
+bmi_history.txt
+
+# Python cache
+__pycache__/
+*.pyc
+
+# VS Code local settings
+.vscode/

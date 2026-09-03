@@ -1,0 +1,16 @@
+Traditional,Men,Adult,Agbada,85000,10
+Traditional,Men,Adult,Kaftan,55000,15
+Traditional,Men,Adult,Senator,65000,12
+Casual,Men,Adult,Shirt,25000,20
+Casual,Men,Adult,Trousers,30000,18
+Traditional,Women,Adult,Hijab,15000,25
+Traditional,Women,Adult,Abaya,45000,12
+Traditional,Women,Adult,Boubou,50000,10
+Casual,Women,Adult,Dress,35000,15
+Casual,Women,Adult,Skirt,28000,20
+Casual,Women,Adult,Blouse,22000,18
+Children,Children,Child,Native Wear,30000,10
+Children,Children,Child,Dress,20000,15
+Children,Children,Child,Shirt,15000,20
+Children,Children,Child,Trousers,18000,20
+Children,Children,Child,Hijab,10000,15
