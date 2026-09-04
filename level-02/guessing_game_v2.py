@@ -185,7 +185,7 @@ def display_stats(player1_wins, player2_wins, player1_score, player2_score):
     print("=" * 35 + "\n")
 
 
-def play_game():
+def main():
     # Overall persistent session stats across rounds
     p1_wins, p2_wins = 0, 0
     p1_score, p2_score = 0, 0
@@ -328,4 +328,4 @@ def play_game():
 
 
 if __name__ == "__main__":
-    play_game()
+    main()
