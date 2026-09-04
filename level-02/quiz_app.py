@@ -332,7 +332,7 @@ def get_user_input_timed(time_limit):
 # ==========================================
 
 
-def run_quiz():
+def main():
     name = input("Enter your name: ").strip() or "Player"
     print(f"\n📚 ADAPTIVE QUIZ CHALLENGE 📚")
     print(f"Welcome {name}!\n")
@@ -566,4 +566,4 @@ def display_results(score, total_questions, log):
 
 
 if __name__ == "__main__":
-    run_quiz()
+    main()
