@@ -1,0 +1,67 @@
+{
+    "projects": {
+        "Work": {
+            "tasks": [
+                {
+                    "id": 1,
+                    "title": "Complete Python project",
+                    "description": "Finish the inventory system",
+                    "priority": 1,
+                    "status": "In Progress",
+                    "deadline": "2026-03-25",
+                    "created": "2026-09-05",
+                    "completed": null,
+                    "subtasks": [
+                        {
+                            "title": "Write code",
+                            "done": true
+                        },
+                        {
+                            "title": "Test",
+                            "done": false
+                        },
+                        {
+                            "title": "Deploy",
+                            "done": false
+                        }
+                    ],
+                    "tags": [
+                        "python",
+                        "project"
+                    ],
+                    "estimated_hours": 8,
+                    "actual_hours": 0
+                }
+            ]
+        },
+        "Personal": {
+            "tasks": [
+                {
+                    "id": 2,
+                    "title": "Pay electricity bill",
+                    "description": "Pay via bank app",
+                    "priority": 1,
+                    "status": "Not Started",
+                    "deadline": "2026-03-18",
+                    "created": "2026-09-05",
+                    "completed": null,
+                    "subtasks": [],
+                    "tags": [
+                        "urgent"
+                    ],
+                    "estimated_hours": 1,
+                    "actual_hours": 0
+                }
+            ]
+        }
+    },
+    "tags": [
+        "python",
+        "project",
+        "work",
+        "urgent"
+    ],
+    "completed_count": 0,
+    "total_count": 2,
+    "next_task_id": 3
+}
