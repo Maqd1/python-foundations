@@ -19,3 +19,5 @@ __pycache__/
 
 # VS Code local settings
 .vscode/
+# Generated logs
+*.log

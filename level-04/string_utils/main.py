@@ -59,3 +59,27 @@ Most common words (2): hello:2, Python:1
 Concepts: Package creation, module imports, string methods, dictionary comprehensions
 '''
 
+"""main.py - Test the string_utils package"""
+
+from string_utils import *
+
+text = input('Text: "')
+
+print('\n📝 STRING UTILITIES PACKAGE 📝')
+print(f'\nText: "{text}"')
+
+print("\nBasic operations:")
+print(f'Reverse: "{reverse(text)}"')
+print(f'Is palindrome? {is_palindrome(text)}')
+print(f'Vowels: {count_vowels(text)}')
+print(f'Consonants: {count_consonants(text)}')
+
+print("\nAdvanced operations:")
+print(f'Capitalized: "{capitalize_words(text)}"')
+print(f'Removed duplicates: "{remove_duplicates(text)}"')
+print(f'Word count: {count_words(text)}')
+
+n = 2
+common = most_common_words(text, n)
+common_str = ", ".join([f"{k}:{v}" for k, v in common.items()])
+print(f'Most common words ({n}): {common_str}')

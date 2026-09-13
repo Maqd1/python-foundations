@@ -1,0 +1,5 @@
+# Core package has no third-party runtime dependencies — everything it
+# uses (math, json, logging, ast, tkinter) is in the Python standard library.
+
+# Dev/test only:
+pytest>=7.0
