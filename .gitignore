@@ -21,3 +21,7 @@ __pycache__/
 .vscode/
 # Generated logs
 *.log
+
+# Password manager local data
+level-04/password_generator/password_manager_project/vault.enc
+level-04/password_generator/password_manager_project/history.json

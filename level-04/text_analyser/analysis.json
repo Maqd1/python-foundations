@@ -1,0 +1,249 @@
+{
+  "characters": {
+    "with_spaces": 344,
+    "without_spaces": 292
+  },
+  "counts": {
+    "words": 51,
+    "sentences": 7,
+    "paragraphs": 3,
+    "unique_words": 40
+  },
+  "averages": {
+    "word_length": 5.49,
+    "sentence_length": 7.29
+  },
+  "lexical_diversity": 0.784,
+  "word_length_distribution": {
+    "1-3": 14,
+    "4-6": 21,
+    "7-10": 12,
+    "10+": 4
+  },
+  "letter_frequency": {
+    "e": 31,
+    "o": 28,
+    "a": 25,
+    "t": 21,
+    "n": 20,
+    "i": 20,
+    "r": 18,
+    "s": 17,
+    "d": 16,
+    "l": 13,
+    "p": 9,
+    "u": 9,
+    "c": 9,
+    "g": 8,
+    "m": 8,
+    "y": 5,
+    "h": 5,
+    "f": 5,
+    "w": 4,
+    "b": 4,
+    "v": 2,
+    "z": 2,
+    "k": 1
+  },
+  "most_common_words": [
+    [
+      "python",
+      2
+    ],
+    [
+      "data",
+      2
+    ],
+    [
+      "code",
+      2
+    ],
+    [
+      "help",
+      2
+    ],
+    [
+      "organize",
+      2
+    ],
+    [
+      "powerful",
+      1
+    ],
+    [
+      "programming",
+      1
+    ],
+    [
+      "language",
+      1
+    ],
+    [
+      "widely",
+      1
+    ],
+    [
+      "used",
+      1
+    ]
+  ],
+  "longest_words": [
+    "dictionaries",
+    "development",
+    "information",
+    "programming",
+    "automation"
+  ],
+  "sentiment": {
+    "label": "POSITIVE",
+    "score": 1.0,
+    "confidence": 1.0,
+    "positive_hits": 1,
+    "negative_hits": 0
+  },
+  "sentiment_score": 1.0,
+  "sentiment_breakdown": {
+    "overall_score": 1.0,
+    "sentences": [
+      {
+        "text": "Python is a powerful programming language.",
+        "score": 0.0
+      },
+      {
+        "text": "It is widely used for data science, web development, and automation.",
+        "score": 0.0
+      },
+      {
+        "text": "Functions are reusable blocks of code.",
+        "score": 0.0
+      },
+      {
+        "text": "They help organize your program and avoid repetition.",
+        "score": 0.0
+      },
+      {
+        "text": "Good code is readable and well-tested.",
+        "score": 1.0
+      },
+      {
+        "text": "Data structures help organize information.",
+        "score": 0.0
+      },
+      {
+        "text": "Lists, dictionaries, and sets are common Python tools.",
+        "score": 0.0
+      }
+    ]
+  },
+  "emotions": {
+    "joy": 0.0,
+    "trust": 0.0,
+    "anticipation": 0.0,
+    "sadness": 0.0,
+    "anger": 0.0,
+    "fear": 0.0,
+    "surprise": 0.0,
+    "disgust": 0.0
+  },
+  "readability": {
+    "flesch_reading_ease": 48.49,
+    "flesch_reading_ease_label": "Difficult",
+    "flesch_kincaid_grade": 8.31,
+    "gunning_fog_index": 11.54,
+    "coleman_liau_index": 12.42
+  },
+  "summary": {
+    "summary": "They help organize your program and avoid repetition. Data structures help organize information.",
+    "sentences": [
+      "They help organize your program and avoid repetition.",
+      "Data structures help organize information."
+    ],
+    "original_word_count": 51,
+    "summary_word_count": 13,
+    "compression": 0.286
+  },
+  "keywords": [
+    "organize",
+    "python",
+    "data",
+    "code",
+    "help",
+    "dictionaries",
+    "programming",
+    "development",
+    "information",
+    "automation"
+  ],
+  "bigrams": [
+    [
+      [
+        "help",
+        "organize"
+      ],
+      2
+    ],
+    [
+      [
+        "python",
+        "is"
+      ],
+      1
+    ],
+    [
+      [
+        "is",
+        "a"
+      ],
+      1
+    ],
+    [
+      [
+        "a",
+        "powerful"
+      ],
+      1
+    ],
+    [
+      [
+        "powerful",
+        "programming"
+      ],
+      1
+    ],
+    [
+      [
+        "programming",
+        "language"
+      ],
+      1
+    ],
+    [
+      [
+        "language",
+        "it"
+      ],
+      1
+    ],
+    [
+      [
+        "it",
+        "is"
+      ],
+      1
+    ],
+    [
+      [
+        "is",
+        "widely"
+      ],
+      1
+    ],
+    [
+      [
+        "widely",
+        "used"
+      ],
+      1
+    ]
+  ]
+}

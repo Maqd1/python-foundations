@@ -1,0 +1,34 @@
+{
+  "rules": [
+    {
+      "name": "Images to Images",
+      "conditions": [{"type": "category", "value": "Images"}],
+      "action": {"type": "move", "destination": "Images"}
+    },
+    {
+      "name": "Documents to Documents",
+      "conditions": [{"type": "category", "value": "Documents"}],
+      "action": {"type": "move", "destination": "Documents"}
+    },
+    {
+      "name": "Videos to Videos",
+      "conditions": [{"type": "category", "value": "Videos"}],
+      "action": {"type": "move", "destination": "Videos"}
+    },
+    {
+      "name": "Audio to Audio",
+      "conditions": [{"type": "category", "value": "Audio"}],
+      "action": {"type": "move", "destination": "Audio"}
+    },
+    {
+      "name": "Archives to Archives",
+      "conditions": [{"type": "category", "value": "Archives"}],
+      "action": {"type": "move", "destination": "Archives"}
+    },
+    {
+      "name": "Programs to Programs",
+      "conditions": [{"type": "category", "value": "Programs"}],
+      "action": {"type": "move", "destination": "Programs"}
+    }
+  ]
+}

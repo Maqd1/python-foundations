@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 '''
 Q7: The Dependency Injection Container (Very Hard)
 
@@ -107,3 +109,114 @@ Circular dependency detected!
 
 Concepts: Advanced OOP, metaclasses, dependency injection, registry pattern, singleton pattern, factory pattern, configuration management, error detection
 '''
+
+
+# container.py
+"""
+Dependency Injection Container
+Supports: register, resolve, singletons, transients, factories,
+tags, lifecycle hooks, scopes, config loading, circular detection.
+"""
+
+
+# dependency_injection.py
+"""Demo entry point wiring the DI container together."""
+
+
+import json
+
+from container import (
+    Container,
+    CircularDependencyError,
+)
+from services import Database, Logger, Cache, Router, UserService, APIService
+
+
+def build_container() -> Container:
+    c = Container()
+
+    print("Registering services...")
+
+    c.register("database", Database, lifetime="singleton", tags=["db", "api"])
+    c.register("logger",   Logger,   lifetime="transient", tags=["logging"])
+    c.register("cache",    Cache,    lifetime="singleton", tags=["api"])
+    c.register("router",   Router,   lifetime="transient", tags=["api"])
+
+    @c.register("user_service", lifetime="singleton", tags=["service"])
+    class _UserService(UserService):
+        pass
+
+    c.register(
+        "api_service", APIService,           # ← proper class that accepts all 3
+        lifetime="singleton",
+        dependencies=["database", "cache", "router"],
+        tags=["api", "service"],
+    )
+    return c
+
+
+def print_registrations(c: Container) -> None:
+    for name in c.services():
+        reg = c.get_registration(name)
+        print(f"✅ Registered: {name} ({reg.lifetime.value})")
+        if reg.dependencies:
+            print(f"  Dependencies: {', '.join(reg.dependencies)}")
+
+
+def main() -> None:
+    print("🔌 DEPENDENCY INJECTION CONTAINER 🔌\n")
+
+    container = build_container()
+    print()
+    print_registrations(container)
+
+    info = container.info()
+    print("\nContainer info:")
+    print(f"📦 Registered services: {info['services']}")
+    print(f"🔗 Dependencies: {info['dependencies']}")
+    print(f"🏷️ Tags: {info['tags']}\n")
+
+    # ---- Resolve ----
+    print("Resolving user_service...")
+    svc: UserService = container.resolve("user_service")
+    print("✅ Created user_service\n")
+
+    print("Test call:")
+    print("user_service.get_user(1)")
+    result = svc.get_user(1)
+    print(f"   -> Return: {result}\n")
+
+    # ---- Configuration ----
+    sample_config = {
+        "database": {"url": "postgresql://localhost:5432/mydb", "pool_size": 10},
+        "logging": {"level": "INFO", "file": "app.log"},
+    }
+    container.load_config_dict(sample_config)
+    print("Configuration loaded:")
+    print(json.dumps(sample_config, indent=4))
+    print()
+
+    # ---- API service ----
+    print("Creating API service with dependencies:")
+    reg = container.get_registration("api_service")
+    print(f"API Service ({reg.lifetime.value})")
+    for dep in reg.dependencies:
+        d = container.get_registration(dep)
+        print(f"  -> {dep.capitalize()}: {d.lifetime.value}")
+    api = container.resolve("api_service")
+    print(f"  -> Router routes: {api.router.routes}\n")
+
+    # ---- Circular dependency demo ----
+    print("Circular dependency detected!")
+    c2 = Container()
+    c2.register("ServiceA", lambda serviceb: None, dependencies=["ServiceB"])
+    c2.register("ServiceB", lambda servicea: None, dependencies=["ServiceA"])
+    try:
+        c2.resolve("ServiceA")
+    except CircularDependencyError as e:
+        print(f"   ❌ {' -> '.join(e.chain)}")
+        print("   💡 Suggestion: Use lazy loading or redesign dependencies")
+
+
+if __name__ == "__main__":
+    main()

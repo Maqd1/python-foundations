@@ -82,3 +82,117 @@ second_fib(35): 0.000 seconds (cached + timed)
 Concepts: Decorators, function wrappers, closure, functools.wraps, error handling, time module
 '''
 
+import functools
+import time
+
+
+def timer(func):
+    """Measures and prints execution time of a function."""
+
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        start_time = time.perf_counter()
+        result = func(*args, **kwargs)
+        elapsed = time.perf_counter() - start_time
+        print(f"{func.__name__} took {elapsed:.3f} seconds")
+        return result
+
+    return wrapper
+
+
+def logger(func):
+    """Logs function calls, positional arguments, and keyword arguments."""
+
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        args_repr = [repr(a) for a in args]
+        kwargs_repr = [f"{k}={v!r}" for k, v in kwargs.items()]
+        signature = ", ".join(args_repr + kwargs_repr)
+        print(f"Calling {func.__name__}({signature})")
+        result = func(*args, **kwargs)
+        print(f"{func.__name__} returned {result!r}")
+        return result
+
+    return wrapper
+
+
+def retry(max_attempts=3):
+    """Retries a function call up to max_attempts on exception failure."""
+
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            for attempt in range(1, max_attempts + 1):
+                try:
+                    result = func(*args, **kwargs)
+                    print(f"Attempt {attempt} succeeded!")
+                    return result
+                except Exception as e:
+                    print(f"Attempt {attempt} failed: {e}")
+                    if attempt == max_attempts:
+                        raise e
+
+        return wrapper
+
+    return decorator
+
+
+def memoize(func):
+    """Caches evaluation results based on positional and keyword arguments."""
+    cache = {}
+
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        key = (args, tuple(sorted(kwargs.items())))
+        if key not in cache:
+            cache[key] = func(*args, **kwargs)
+        return cache[key]
+
+    return wrapper
+
+
+def timeout(seconds):
+    """Raises TimeoutError if execution duration exceeds specified seconds."""
+
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            start = time.perf_counter()
+            result = func(*args, **kwargs)
+            elapsed = time.perf_counter() - start
+            if elapsed > seconds:
+                raise TimeoutError(
+                    f"{func.__name__} exceeded timeout limit of {seconds}s (took {elapsed:.3f}s)"
+                )
+            return result
+
+        return wrapper
+
+    return decorator
+
+
+def validate_args(**expected_types):
+    """Validates argument types passed to the decorated function."""
+
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            code = func.__code__
+            arg_names = code.co_varnames[: code.co_argcount]
+
+            passed_args = dict(zip(arg_names, args))
+            passed_args.update(kwargs)
+
+            for arg_name, expected_type in expected_types.items():
+                if arg_name in passed_args:
+                    val = passed_args[arg_name]
+                    if not isinstance(val, expected_type):
+                        raise TypeError(
+                            f"Argument '{arg_name}' must be of type {expected_type.__name__}, got {type(val).__name__}"
+                        )
+
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator

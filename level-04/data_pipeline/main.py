@@ -78,3 +78,60 @@ IQR: 5.5
 
 Concepts: Package structure, lambda functions, functional programming, statistical calculations, file I/O, data transformation
 '''
+
+from analyzers import (
+    get_correlation,
+    get_outliers,
+    get_quartiles,
+    get_statistics,
+)
+from exporters import to_csv, to_json, to_markdown
+from transformers import clean_data, filter_data, map_data, reduce_data
+
+
+def main():
+    print("📊 DATA PIPELINE PACKAGE 📊\n")
+
+    raw_data = [1, 5, 3, 7, 9, 2, 4, 6, 8, 10, 15, 100]
+    print(f"Original Data: {raw_data}\n")
+
+    # Pipeline transformations
+    filtered = filter_data(raw_data, lambda x: x > 5)
+    mapped = map_data(filtered, lambda x: x * 2)
+    reduced = reduce_data(mapped, lambda acc, x: acc + x, initial=0)
+
+    print(f"Filtered (>5): {filtered}")
+    print(f"Mapped (doubled): {mapped}")
+    print(f"Reduced (sum): {reduced}\n")
+
+    # Analytical computations
+    stats = get_statistics(raw_data)
+    print("📊 Statistics:")
+    print(f"Mean: {stats['mean']}")
+    print(f"Median: {stats['median']}")
+    print(f"Mode: {stats['mode']}")
+    print(f"Std Dev: {stats['std_dev']}\n")
+
+    quartiles = get_quartiles(raw_data)
+    print("📊 Quartiles:")
+    print(f"Q1: {quartiles['Q1']}")
+    print(f"Q2: {quartiles['Q2']}")
+    print(f"Q3: {quartiles['Q3']}")
+    print(f"IQR: {quartiles['IQR']}\n")
+
+    outliers = get_outliers(raw_data)
+    print(f"⚠️ Outliers: {outliers}\n")
+
+    # Exporters execution
+    to_json(stats, "data.json")
+    to_csv(raw_data, "data.csv")
+    to_markdown(stats, "data.md")
+
+    print("📁 Exported to:")
+    print("- data.json")
+    print("- data.csv")
+    print("- data.md")
+
+
+if __name__ == "__main__":
+    main()

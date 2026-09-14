@@ -1,0 +1,36 @@
+{
+  "rules": [
+    {
+      "name": "Block executables",
+      "conditions": [
+        {"type": "extension", "value": [".exe", ".bat", ".sh", ".msi"]}
+      ],
+      "action": {"type": "move", "destination": "Quarantine"}
+    },
+    {
+      "name": "Screenshots by name",
+      "conditions": [
+        {"type": "name", "op": "starts", "value": "screenshot"},
+        {"type": "extension", "value": [".png", ".jpg"]}
+      ],
+      "logic": "all",
+      "action": {"type": "move", "destination": "Screenshots"}
+    },
+    {
+      "name": "Old large files to Cold Storage",
+      "conditions": [
+        {"type": "date", "op": "<", "value": "2023-01-01"},
+        {"type": "size", "op": ">", "value": 104857600}
+      ],
+      "logic": "all",
+      "action": {"type": "move", "destination": "Cold Storage"}
+    },
+    {
+      "name": "Temp files → delete",
+      "conditions": [
+        {"type": "extension", "value": [".tmp", ".bak", ".old"]}
+      ],
+      "action": {"type": "delete"}
+    }
+  ]
+}
