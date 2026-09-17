@@ -138,10 +138,10 @@ def select_difficulty():
                 print("⚠️ Invalid choice! Please select 1, 2, 3, or 4.")
 
 
-def generate_number(max_num, player1=None):
+def generate_number(max_num, chosen_number=None):
     """If player1 is provided, use their number; otherwise generate random."""
-    if player1 is not None:
-        return player1
+    if chosen_number is not None:
+        return chosen_number
     return random.randint(1, max_num)
 
 
@@ -229,7 +229,7 @@ def main():
                 try:
                     secret_input = int(input(f"{setter_name}, enter a secret number (1-{max_num}): "))
                     if 1 <= secret_input <= max_num:
-                        secret = generate_number(max_num, player1=secret_input)
+                        secret = generate_number(max_num, chosen_number=secret_input)
                         break
                     print(f"⚠️ Number must be between 1 and {max_num}!")
                 except ValueError:
