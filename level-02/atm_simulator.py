@@ -161,7 +161,7 @@ system_frozen = False
 
 
 def naira(amount):
-    return f"\u20a6{amount:,.2f}"
+    return f"₦{amount:,.2f}"
 
 
 def record_transaction(acct_num, ttype, amount, balance_after):
