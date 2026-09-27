@@ -53,3 +53,7 @@ dist/
 
 # OS files
 .DS_Store
+
+# Level 04 generated password manager data
+level-04/core/password_manager/history.json
+level-04/core/password_manager/vault.enc
