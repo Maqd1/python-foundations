@@ -1,110 +1,4 @@
-'''
-Core 1
 
-🎮 CORE GUESSING GAME
-
-The High-Low Challenge with Multiplayer Mode 🏆
-
-Create a guessing game with these advanced features:
-
-Core Features:
-
-1. Two modes:
-   · Single Player: Player guesses against the computer
-   · Multiplayer: Two players take turns guessing
-2. Difficulty Levels:
-   · Easy: 1-20 (10 attempts)
-   · Medium: 1-50 (7 attempts)
-   · Hard: 1-100 (5 attempts)
-   · Impossible: 1-500 (3 attempts)
-3. Scoring System:
-   · Base points: 100 for winning
-   · Bonus points: (max_attempts - attempts_used) x 10
-   · Penalty: -10 points for each wrong guess (but not below 0)
-4. Hints System:
-   · Player can use 3 hints per game
-   · Hint: "The number is even/odd" or "The number is divisible by 5"
-   · Using a hint costs 15 points
-
-Multiplayer Mode (HARDEST PART):
-
-· Player 1 sets the number
-· Player 2 guesses (or vice versa)
-· Roles switch after each game
-· Track wins for both players across multiple rounds
-
-Technical Requirements:
-
-python
-# Function signatures (you must implement these)
-def select_difficulty():
-    """Returns (max_number, max_attempts) based on user choice"""
-    pass
-
-def generate_number(max_num, player1=None):
-    """If player1 is provided, use their number; otherwise generate random"""
-    pass
-
-def give_hint(number, attempts_left):
-    """Returns a hint string based on the number"""
-    pass
-
-def calculate_score(attempts_used, max_attempts, hints_used):
-    """Returns the final score"""
-    pass
-
-def display_stats(player1_wins, player2_wins, player1_score, player2_score):
-    """Shows game statistics"""
-    pass
-
-
-Sample Output:
-
-
-🎯 HIGH-LOW CHALLENGE 🎯
-1. Single Player
-2. Multiplayer
-Choice: 1
-
-Select Difficulty:
-1. Easy (1-20, 10 attempts)
-2. Medium (1-50, 7 attempts)
-3. Hard (1-100, 5 attempts)
-4. Impossible (1-500, 3 attempts)
-Choice: 2
-
-I'm thinking of a number between 1-50.
-You have 7 attempts.
-
-Attempt 1: 25
-Too low! 🔽 (6 attempts left)
-[Score: 100]
-
-Attempt 2: 40
-Too high! 🔼 (5 attempts left)
-[Score: 90]
-
-Attempt 3: 32
-Too low! 🔽 (4 attempts left)
-Would you like a hint? (y/n): y
-Hint: The number is even
-[Hint used - Score: 75]
-
-Attempt 4: 36
-Too low! 🔽 (3 attempts left)
-
-Attempt 5: 42
-🎉 CORRECT! You got it in 5 attempts!
-
-🏆 FINAL SCORE: 120
-(100 base + 20 bonus - 0 penalties - 15 hints)
-
-Play again? (y/n): y
-
-
-Concepts Tested: while loops, nested conditionals, functions with multiple return values, scope, break, continue, pass, range(), list/dict for storing stats
-
-'''
 
 import random
 
@@ -186,11 +80,9 @@ def display_stats(player1_wins, player2_wins, player1_score, player2_score):
 
 
 def main():
-    # Overall persistent session stats across rounds
     p1_wins, p2_wins = 0, 0
     p1_score, p2_score = 0, 0
 
-    # Role switcher for Multiplayer mode (True = P1 sets / P2 guesses)
     p1_sets_number = True
 
     while True:
@@ -209,7 +101,6 @@ def main():
             print("⚠️ Invalid selection. Please enter 1, 2, or 3.")
             continue
 
-        # Setup Game
         max_num, max_att = select_difficulty()
 
         if mode_choice == "1":
@@ -224,7 +115,6 @@ def main():
 
             print(f"\n🎮 {setter_name}'s turn to set the secret number!")
 
-            # Safely prompt the setting player for a number in secret
             while True:
                 try:
                     secret_input = int(input(f"{setter_name}, enter a secret number (1-{max_num}): "))
@@ -241,7 +131,6 @@ def main():
 
         print(f"You have {max_att} attempts.")
 
-        # Gameplay Loop
         num_attempt = 0
         hints_used = 0
         won = False
@@ -249,14 +138,13 @@ def main():
         while num_attempt < max_att:
             num_attempt += 1
 
-            # Validate input guess
             try:
                 guess = int(
                     input(f"\nAttempt {num_attempt}/{max_att} - Enter guess: ")
                 )
             except ValueError:
                 print("⚠️ Please enter a valid number!")
-                num_attempt -= 1  # Do not penalize for malformed text input
+                num_attempt -= 1 
                 continue
 
             if guess < 1 or guess > max_num:
@@ -281,7 +169,6 @@ def main():
 
             attempts_left = max_att - num_attempt
 
-            # Hint Option logic
             if attempts_left > 0 and hints_used < 3:
                 want_hint = (
                     input("Would you like a hint? (costs 15 pts) (y/n): ")
@@ -296,7 +183,6 @@ def main():
             if attempts_left > 0:
                 print(f"({attempts_left} attempts left)")
 
-        # End of Round Scoring
         if not won:
             print(f"\n💀 Game over! The secret number was {secret}.")
 
@@ -304,7 +190,6 @@ def main():
         print(f"\n🏆 ROUND SCORE: {round_score}")
         print(f"(100 base + {(max_att - num_attempt)*10 if won else 0} bonus - {(num_attempt-1)*10} penalties - {hints_used*15} hints)")
 
-        # Update persistent stats
         if mode_choice == "1":
             if won:
                 p1_wins += 1
@@ -317,7 +202,6 @@ def main():
                 else:
                     p1_wins += 1
                     p1_score += round_score
-            # Switch roles for next round
             p1_sets_number = not p1_sets_number
 
         display_stats(p1_wins, p2_wins, p1_score, p2_score)
