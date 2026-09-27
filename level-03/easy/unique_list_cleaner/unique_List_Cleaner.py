@@ -1,22 +1,3 @@
-'''
-Q2: The Unique List Cleaner (Easy)
-Write a program that removes duplicates from a list.
-Requirements:
-
-Create a list with duplicate values:
-python
-
-numbers = [1, 2, 2, 3, 4, 4, 4, 5, 6, 6, 7, 8, 8, 8, 9, 9]names = ["John", "Jane", "John", "Bob", "Jane", "Alice", "Bob"]
-Remove duplicates using a set
-Print the original list and the cleaned list
-Count how many duplicates were removed
-Extra challenge: Preserve the original order (hint: use a list + set combination)
-Sample Output:
-text
-
-Original: [1, 2, 2, 3, 4, 4, 4, 5, 6, 6, 7, 8, 8, 8, 9, 9]Cleaned: [1, 2, 3, 4, 5, 6, 7, 8, 9]Removed 7 duplicates!Names original: ['John', 'Jane', 'John', 'Bob', 'Jane', 'Alice', 'Bob']Names cleaned (preserving order): ['John', 'Jane', 'Bob', 'Alice']Removed 3 duplicates!
-Concepts: Sets, lists, len(), type conversion, membership
-'''
 
 
 # ==========================================
