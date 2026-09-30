@@ -23,7 +23,7 @@ A Python command-line utility for comparing and synchronizing two directories.
 * Synchronization reports
 * File metadata preservation with `shutil.copy2()`
 
-## Directory Structure
+## Project Structure
 
 ```text
 directory_synchronizer/
@@ -33,7 +33,7 @@ directory_synchronizer/
 
 ## Basic Usage
 
-Compare two directories:
+Compare two directories without making changes:
 
 ```bash
 python directory_synchronizer.py source target --compare-only
@@ -45,7 +45,46 @@ Synchronize source to target:
 python directory_synchronizer.py source target
 ```
 
-The default mode is one-way synchronization.
+The default synchronization mode is one-way.
+
+---
+
+## Directory Comparison
+
+The program recursively scans both directories and compares files using their relative paths and MD5 content hashes.
+
+It identifies:
+
+```text
+Source only     → file exists only in source
+Target only     → file exists only in target
+Modified        → file exists in both but contents differ
+Unchanged       → file exists in both with identical contents
+```
+
+Example:
+
+```text
+============================================================
+DIRECTORY COMPARISON
+============================================================
+
+New in source: 1
+  + report.pdf
+
+New in target: 1
+  + old.txt
+
+Modified: 1
+  ~ config.json
+
+Unchanged: 3
+  = README.md
+  = notes.txt
+  = data.csv
+
+============================================================
+```
 
 ## One-Way Synchronization
 
@@ -53,7 +92,13 @@ The default mode is one-way synchronization.
 python directory_synchronizer.py source target --mode one-way
 ```
 
-In one-way mode, the source directory is treated as the authoritative directory.
+One-way synchronization treats the source directory as authoritative.
+
+Files that exist only in the source are copied to the target.
+
+Files that exist only in the target are deleted.
+
+Modified files are resolved according to the selected conflict strategy.
 
 For example:
 
@@ -79,17 +124,15 @@ target/
 └── b.txt
 ```
 
-`a.txt` is copied from source to target, while `c.txt` is removed from target.
-
 ## Bidirectional Synchronization
 
 ```bash
 python directory_synchronizer.py source target --mode bidirectional
 ```
 
-Files that exist only on one side are copied to the other side.
+Bidirectional synchronization copies files that exist only on one side to the other side.
 
-Example:
+For example:
 
 ```text
 source/
@@ -99,7 +142,7 @@ target/
 └── target.txt
 ```
 
-After bidirectional synchronization:
+After synchronization:
 
 ```text
 source/
@@ -110,6 +153,8 @@ target/
 ├── source.txt
 └── target.txt
 ```
+
+When the same file exists on both sides but has different contents, the selected conflict strategy determines which version is used.
 
 ## Conflict Resolution
 
@@ -145,27 +190,53 @@ The target version is selected.
 python directory_synchronizer.py source target --conflict ask
 ```
 
-The program asks which version should be used for each conflict.
+The program interactively asks how each conflict should be resolved.
+
+Available choices:
+
+```text
+[s] Source
+[t] Target
+[k] Skip
+```
 
 ## MD5 File Comparison
 
-The program calculates an MD5 hash for every file.
+The program calculates an MD5 hash for each file.
 
-Files are considered unchanged when their hashes match.
+Files with matching hashes are treated as unchanged.
 
-For example:
+Files with different hashes are treated as modified.
+
+The comparison therefore does not rely only on filenames or file sizes.
+
+Conceptually:
 
 ```text
 source/data.txt
-MD5: abc123...
-
+      │
+      ▼
+   MD5 hash
+      │
+      │ compare
+      ▼
 target/data.txt
-MD5: abc123...
+      │
+      ▼
+   MD5 hash
 ```
 
-Because the hashes match, the files are considered identical.
+If both hashes match:
 
-If the hashes differ, the file is treated as modified.
+```text
+UNCHANGED
+```
+
+If they differ:
+
+```text
+MODIFIED
+```
 
 ## Excluding Files
 
@@ -183,9 +254,11 @@ Multiple patterns can be supplied:
 ```bash
 python directory_synchronizer.py source target \
     --exclude "*.log" \
-    --exclude "__pycache__" \
-    --exclude "*.tmp"
+    --exclude "*.tmp" \
+    --exclude "__pycache__"
 ```
+
+Excluded files are ignored during both comparison and synchronization.
 
 ## Dry Run
 
@@ -195,7 +268,7 @@ Use:
 python directory_synchronizer.py source target --dry-run
 ```
 
-The program shows what it would do without changing either directory.
+Dry-run mode displays the operations that would be performed without modifying either directory.
 
 Example:
 
@@ -204,44 +277,21 @@ Example:
 [DRY-RUN] DELETE target/old.txt
 ```
 
-This is useful for safely checking synchronization before making changes.
+This provides a safe way to inspect synchronization operations before applying them.
 
 ## Comparison Only
 
-To inspect differences without synchronizing:
+To compare directories without synchronizing:
 
 ```bash
 python directory_synchronizer.py source target --compare-only
 ```
 
-Example:
-
-```text
-============================================================
-DIRECTORY COMPARISON
-============================================================
-
-New in source: 2
-  + image.png
-  + report.pdf
-
-New in target: 1
-  + old.txt
-
-Modified: 1
-  ~ data.csv
-
-Unchanged: 3
-  = README.md
-  = config.json
-  = notes.txt
-
-============================================================
-```
+This is useful when you only want to inspect differences.
 
 ## Reports
 
-Generate a report:
+Generate a synchronization report:
 
 ```bash
 python directory_synchronizer.py source target --report
@@ -260,6 +310,49 @@ python directory_synchronizer.py source target \
     --report synchronization_report.txt
 ```
 
+Reports contain:
+
+* copied files
+* updated files
+* deleted files
+* unchanged files
+* conflict resolutions
+* report generation time
+
+Example:
+
+```text
+DIRECTORY SYNCHRONIZATION REPORT
+============================================================
+Generated: 2026-09-30 11:01:26
+============================================================
+
+COPIED: 1
+  source.txt
+
+DELETED: 1
+  target.txt
+
+UPDATED: 0
+
+UNCHANGED: 0
+
+CONFLICTS: 0
+```
+
+## Command-Line Options
+
+| Option           | Description                            |
+| ---------------- | -------------------------------------- |
+| `source`         | Source directory                       |
+| `target`         | Target directory                       |
+| `--mode`         | `one-way` or `bidirectional`           |
+| `--conflict`     | `newest`, `source`, `target`, or `ask` |
+| `--exclude`      | Exclude a file pattern                 |
+| `--dry-run`      | Show operations without applying them  |
+| `--report`       | Generate a synchronization report      |
+| `--compare-only` | Compare without synchronizing          |
+
 ## Concepts Practiced
 
 This project demonstrates:
@@ -273,39 +366,51 @@ This project demonstrates:
 * file copying
 * file deletion
 * `dataclasses`
-* sets and set operations
 * dictionaries
-* command-line arguments
+* sets and set operations
 * `argparse`
-* pattern matching with `fnmatch`
+* command-line interfaces
+* `fnmatch`
+* pattern matching
 * conflict resolution
 * exception handling
 * dry-run design
 * report generation
 * modular program design
 
-## Important Design Idea
+## Design Overview
 
-The program first creates a snapshot of both directories.
-
-Each file is represented by information such as:
+The program separates the synchronization process into several stages:
 
 ```text
-relative path
-file size
-modified time
-MD5 hash
+Scan directories
+       │
+       ▼
+Create file information
+       │
+       ├── relative path
+       ├── file size
+       ├── modified time
+       └── MD5 hash
+       │
+       ▼
+Compare directories
+       │
+       ├── source only
+       ├── target only
+       ├── modified
+       └── unchanged
+       │
+       ▼
+Resolve conflicts
+       │
+       ▼
+Synchronize
+       │
+       ├── copy
+       ├── update
+       ├── delete
+       └── skip
 ```
 
-The relative path is then used as the identity of the file.
-
-The comparison process can therefore determine:
-
-```text
-source only     → new source file
-target only     → new target file
-both + same MD5 → unchanged
-both + different MD5 → modified
-```
-
-This separation between **scanning**, **comparison**, **conflict resolution**, and **synchronization** keeps the program easier to understand and extend.
+This separation makes the program easier to test, understand, and extend.
