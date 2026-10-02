@@ -24,3 +24,4 @@ test_incremental_backups/
 test_incremental_source/
 test_source/
 test_zip_backups/
+test_backups/
