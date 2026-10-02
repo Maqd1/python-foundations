@@ -1,0 +1,26 @@
+{
+    "report.txt": {
+        "path": "report.txt",
+        "size": 18,
+        "modified": 1790773328.2851052,
+        "md5": "a2b9cfaf38f2a3570242673bc3224871"
+    },
+    "hello.txt": {
+        "path": "hello.txt",
+        "size": 24,
+        "modified": 1790773328.284105,
+        "md5": "2d9af9f93200cbd3aa703c41052346c7"
+    },
+    "images/image.txt": {
+        "path": "images/image.txt",
+        "size": 19,
+        "modified": 1790773328.2861052,
+        "md5": "ab97bbb529077289aba9006fc518a52d"
+    },
+    "projects/app.py": {
+        "path": "projects/app.py",
+        "size": 15,
+        "modified": 1790773328.2861052,
+        "md5": "eba592f6dd3084b366fe7a96a7b54dd8"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "backup_id": "BKP-2026-10-02-020712",
+    "mode": "incremental",
+    "source": "test_incremental_source",
+    "files": 2,
+    "size_original": 53,
+    "timestamp": "2026-10-02T02:07:12.420212",
+    "duration_seconds": 0.02
+}

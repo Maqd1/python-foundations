@@ -1,0 +1,10 @@
+{
+    "backup_id": "BKP-2026-10-02-022136",
+    "mode": "full",
+    "source": "test_full_source",
+    "files": 4,
+    "size_original": 76,
+    "compression": "zip",
+    "timestamp": "2026-10-02T02:21:36.626404",
+    "duration_seconds": 0.02
+}

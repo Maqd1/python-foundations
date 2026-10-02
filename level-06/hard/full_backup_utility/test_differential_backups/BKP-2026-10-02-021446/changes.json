@@ -1,0 +1,14 @@
+{
+    "new": [
+        "file_a.txt"
+    ],
+    "modified": [
+        "report.txt"
+    ],
+    "unchanged": [
+        "hello.txt",
+        "images/image.txt",
+        "projects/app.py"
+    ],
+    "deleted": []
+}

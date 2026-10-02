@@ -1,0 +1,11 @@
+{
+    "backup_id": "BKP-2026-09-30-112715",
+    "mode": "full",
+    "source": "test_source",
+    "files": 4,
+    "size_original": 61,
+    "size_compressed": 492,
+    "checksum": "db602bad6b6c246c3dc0c6b45d107a95",
+    "timestamp": "2026-09-30T11:27:15.608840",
+    "duration_seconds": 0.03
+}

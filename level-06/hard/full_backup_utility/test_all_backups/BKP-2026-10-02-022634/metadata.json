@@ -1,0 +1,17 @@
+{
+    "backup_id": "BKP-2026-10-02-022634",
+    "mode": "full",
+    "source": "test_full_source",
+    "files": 4,
+    "size_original": 76,
+    "compression": "zip",
+    "encrypted": false,
+    "include_patterns": [],
+    "exclude_patterns": [],
+    "timestamp": "2026-10-02T02:26:34.760858",
+    "duration_seconds": 0.02,
+    "compressed_size": 1808,
+    "compression_ratio_percent": 2378.95,
+    "checksum_md5": "ec812c333a3e9167a6da5036f3c98bd9",
+    "archive": "test_all_backups/BKP-2026-10-02-022634.zip"
+}
