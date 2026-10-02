@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Backup archives
+*.tar.gz
+*.zip
+*.zip.enc
+
+# Backup logs
+backup.log
+*.log
+
+# Q7 generated test data
+test_all_backups/
+test_backup/
+test_differential_backups/
+test_differential_source/
+test_encrypted_backups/
+test_full_backups/
+test_full_source/
+test_incremental_backups/
+test_incremental_source/
+test_source/
+test_zip_backups/

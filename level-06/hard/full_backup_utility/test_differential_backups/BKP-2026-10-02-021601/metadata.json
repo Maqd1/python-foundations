@@ -1,9 +1,0 @@
-{
-    "backup_id": "BKP-2026-10-02-021601",
-    "mode": "differential",
-    "source": "test_differential_source",
-    "files": 3,
-    "size_original": 80,
-    "timestamp": "2026-10-02T02:16:02.024679",
-    "duration_seconds": 0.05
-}
