@@ -1,0 +1,38 @@
+[
+  {
+    "id": "USER001",
+    "name": "Damilola Ogunleye",
+    "email": "dami@email.com",
+    "age": 28,
+    "address": {
+      "city": "Lagos",
+      "state": "Lagos",
+      "country": "Nigeria"
+    },
+    "active": true
+  },
+  {
+    "id": "USER002",
+    "name": "Aisha Yusuf",
+    "email": "aisha@email.com",
+    "age": 32,
+    "address": {
+      "city": "Abuja",
+      "state": "FCT",
+      "country": "Nigeria"
+    },
+    "active": true
+  },
+  {
+    "id": "USER003",
+    "name": "John Smith",
+    "email": "john@email.com",
+    "age": 24,
+    "address": {
+      "city": "Lagos",
+      "state": "Lagos",
+      "country": "Nigeria"
+    },
+    "active": false
+  }
+]
