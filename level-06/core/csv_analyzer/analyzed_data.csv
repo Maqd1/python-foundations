@@ -1,0 +1,11 @@
+Name,Dept,Salary,Age,Years_Exp
+John Smith,Engineering,450000.0,35,12
+Alice Johnson,Sales,250000.0,22,1
+David Brown,Engineering,320000.0,32,8
+Sarah Williams,Marketing,275000.0,31,7
+Michael Davis,Sales,280000.0,29,6
+Fatima Ahmed,Engineering,340000.0,38,14
+James Wilson,Marketing,260000.0,27,4
+Mary Taylor,Sales,240000.0,30,5
+Peter Thomas,Engineering,310000.0,41,16
+Aisha Yusuf,Marketing,,28,5

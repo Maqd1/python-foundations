@@ -1,0 +1,75 @@
+{
+    "file": "",
+    "rows": 10,
+    "columns": 5,
+    "column_names": [
+        "Name",
+        "Dept",
+        "Salary",
+        "Age",
+        "Years_Exp"
+    ],
+    "column_types": {
+        "Name": "String",
+        "Dept": "String",
+        "Salary": "Numeric",
+        "Age": "Numeric",
+        "Years_Exp": "Numeric"
+    },
+    "statistics": {
+        "Salary": {
+            "mean": 302777.77777777775,
+            "median": 280000.0,
+            "mode": 240000.0,
+            "std_dev": 64474.37044628233,
+            "min": 240000.0,
+            "max": 450000.0,
+            "missing": 1,
+            "missing_percentage": 10.0
+        },
+        "Age": {
+            "mean": 31.3,
+            "median": 30.5,
+            "mode": 22.0,
+            "std_dev": 5.5387523665332585,
+            "min": 22.0,
+            "max": 41.0,
+            "missing": 0,
+            "missing_percentage": 0.0
+        },
+        "Years_Exp": {
+            "mean": 7.8,
+            "median": 6.5,
+            "mode": 5.0,
+            "std_dev": 4.756282395129858,
+            "min": 1.0,
+            "max": 16.0,
+            "missing": 0,
+            "missing_percentage": 0.0
+        }
+    },
+    "correlations": {
+        "Salary vs Age": {
+            "coefficient": 0.5714896775609228,
+            "strength": "Moderate",
+            "direction": "Positive"
+        },
+        "Salary vs Years_Exp": {
+            "coefficient": 0.6568532408120852,
+            "strength": "Moderate",
+            "direction": "Positive"
+        },
+        "Age vs Years_Exp": {
+            "coefficient": 0.9852597659004487,
+            "strength": "Strong",
+            "direction": "Positive"
+        }
+    },
+    "outliers": {
+        "Salary": {
+            "count": 1,
+            "lower_bound": 170000.0,
+            "upper_bound": 410000.0
+        }
+    }
+}
