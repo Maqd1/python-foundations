@@ -1,0 +1,35 @@
+# Python-generated files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Runtime logs
+backup.log
+scheduler_runs.log
+scheduler_runs.log.bak
+
+# Generated reports
+reports/
+
+# Generated test and restore destinations
+*_test/
+*_test_destination/
+test_dest_*/
+hash_test_*/
+demo_dest_*/
+logging_test_destination/
+restore_test/
+scheduler_status_test/
+scheduler_test_destination/
+aes256_restore_test/
+aes256_test_destination/
+email_failure_test_destination/
+email_test_destination/
+
+# Local secrets
+.env
+.env.*
+!.env.example

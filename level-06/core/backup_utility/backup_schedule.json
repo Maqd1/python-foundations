@@ -1,0 +1,35 @@
+{
+  "jobs": [
+    {
+      "job_name": "Daily_Project_Backup",
+      "frequency": "daily",
+      "hour": 2,
+      "minute": 0,
+      "backup_config": {
+        "job_name": "Daily_Project_Backup",
+        "sources": ["sample_data"],
+        "destinations": ["hash_test_local", "hash_test_external"],
+        "type": "incremental",
+        "password": null,
+        "compress": true,
+        "retention_days": 30
+      }
+    },
+    {
+      "job_name": "Weekly_Full_Backup",
+      "frequency": "weekly",
+      "day_of_week": "sun",
+      "hour": 3,
+      "minute": 0,
+      "backup_config": {
+        "job_name": "Weekly_Full_Backup",
+        "sources": ["sample_data"],
+        "destinations": ["hash_test_local", "hash_test_external"],
+        "type": "full",
+        "password": null,
+        "compress": true,
+        "retention_days": 30
+      }
+    }
+  ]
+}
